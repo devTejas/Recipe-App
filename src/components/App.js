@@ -15,7 +15,7 @@ const sampleRecipes = [
       name: 'Plain Rice',
       servings: 3,
       cookTime: '1:45',
-      instructions: "1. Put rice in cooker\n2.Put salt in rice\n3.Eat rice",
+      instructions: "1.Put rice in cooker\n2.Put salt in rice\n3.Eat rice",
       ingredients: [
          {
             id: 1,
@@ -34,7 +34,7 @@ const sampleRecipes = [
       name: 'Idly',
       servings: 5,
       cookTime: '0:45',
-      instructions: "1. Put Idly in cooker\n2.Put oil in Idly\n3.Eat idly",
+      instructions: "1.Put Idly in cooker\n2.Put oil in Idly\n3.Eat idly",
       ingredients: [
          {
             id: 1,

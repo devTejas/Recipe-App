@@ -1,8 +1,25 @@
 @import-normalize;
+@import "button.css";
 @import "recipe-list.css";
+@import "recipe.css";
+@import "ingredient-list.css";
 
 *,
 *::before,
 *::after {
   font-family: "dank mono", cursive, Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+html {
+  font-size: 25px;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.mr-1 {
+  margin-right: 10px;
 }
