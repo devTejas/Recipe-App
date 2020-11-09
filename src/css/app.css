@@ -1,0 +1,12 @@
+@import-normalize;
+@import "recipe-list.css";
+
+*,
+*::before,
+*::after {
+  font-family: "dank mono", cursive, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  /* background-color: pink; */
+}
