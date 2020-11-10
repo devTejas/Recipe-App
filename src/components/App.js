@@ -6,11 +6,16 @@ import { v4 as uuidv4 } from 'uuid';
 
 import '../css/app.css'
 
+// Recipe context for add & delete buttons
 export const RecipeContext = React.createContext();
 const LOCAL_STORAGE_KEY = 'recipeApp.recipes';
 
 export default function App() {
     const [recipes, setRecipes] = useState(sampleRecipes);
+
+    // for selecting recipes and editing them
+    const [selectedRecipeId, setSelectedRecipeId] = useState();
+    const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId);
 
     useEffect(
         () => {
@@ -29,37 +34,57 @@ export default function App() {
 
     const recipeContextValue = {
         handleRecipeAdd,
-        handleRecipeDelete
+        handleRecipeDelete,
+        handleRecipeSelect,
+        handleRecipeChange
+    }
+
+    // handleRecipeEdit
+    function handleRecipeSelect(id) {
+        setSelectedRecipeId(id);
     }
 
     function handleRecipeAdd() {
         const newRecipe = {
             id: uuidv4(),
-            name: 'New Recipe',
+            name: 'Name',
             servings: 1,
-            cookTime: '1:00',
-            instructions: 'Instr.',
+            cookTime: '',
+            instructions: '',
             ingredients: [
                 {
                     id: uuidv4(),
-                    name: 'Name',
-                    amount: '1 unit'
+                    name: '',
+                    amount: ''
                 }
             ]
         }
 
         setRecipes([...recipes, newRecipe]);
+        handleRecipeSelect(newRecipe.id)
+    }
+
+    // handleRecipeChange runs for each and every change of input. We can also add a save button, which on click runs onChange function
+    function handleRecipeChange(id, recipe) {
+        const newRecipes = [...recipes]
+        const index = newRecipes.findIndex(r => r.id === id)
+        newRecipes[index] = recipe
+        setRecipes(newRecipes)
     }
 
     function handleRecipeDelete(id) {
-        setRecipes(recipes.filter(recipe => recipe.id !== id));
+        if (selectedRecipeId !== null && selectedRecipeId === id)
+            setSelectedRecipeId(undefined)
+        setRecipes(
+            recipes.filter(recipe => recipe.id !== id)
+        );
     }
 
     return (
         // using context
         <RecipeContext.Provider value={recipeContextValue}>
             <RecipeList recipes={recipes} />
-            <RecipeEdit />
+            {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
         </RecipeContext.Provider>
 
         // using props

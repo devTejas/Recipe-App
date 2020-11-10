@@ -3,16 +3,18 @@
 @import "recipe-list.css";
 @import "recipe.css";
 @import "ingredient-list.css";
+@import "recipe-edit.css";
 
 *,
 *::before,
 *::after {
   font-family: "dank mono", cursive, Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: bold;
+  /* font-weight: bold; */
+  box-sizing: border-box;
 }
 
 html {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 body {
